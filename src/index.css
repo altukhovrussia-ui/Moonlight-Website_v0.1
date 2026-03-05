@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@theme {
+  --font-display: "Teko", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --color-primary: #FF000D;
+  --color-background-light: #f4f4f5;
+  --color-background-dark: #09090b;
+  --color-surface-dark: #18181b;
+  --color-border-dark: #27272a;
+  --color-text-muted: #a1a1aa;
+}
+
+@layer base {
+  body {
+    @apply font-body bg-background-dark text-white antialiased overflow-x-hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase;
+  }
+}
+
+@layer components {
+  .chrome-text {
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .chrome-border {
+    position: relative;
+  }
+
+  .chrome-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0.4) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .bento-card {
+    @apply bg-surface-dark p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] border border-white/5 relative overflow-hidden;
+  }
+}
+
